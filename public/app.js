@@ -1,0 +1,55 @@
+var Event = (function () {
+    // private static
+    var nextId = 1;
+
+    // constructor
+    var cls = function () {
+        // private
+        var id = nextId++;
+        var name = 'Unknown';
+
+        // public (this instance only)
+        this.get_id = function () { return id; };
+
+        this.get_name = function () { return name; };
+        this.set_name = function (value) {
+                if (typeof value != 'string')
+                        throw 'Name must be a string';
+                if (value.length < 2 || value.length > 20)
+                        throw 'Name must be 2-20 characters long.';
+                name = value;
+        };
+    };
+
+    // public static
+    cls.get_nextId = function () {
+        return nextId;
+    };
+
+    // public (shared across instances)
+    cls.prototype = {
+        announce: function () {
+                alert('Hi there from Event!');
+        }
+    };
+
+    return cls;
+
+})();
+$(document).ready(function() {
+
+  alert('jquery is ready...');
+
+  var evt = new Event();
+
+  console.log(evt);
+
+  evt.announce();
+
+  var loginTemplate = $('#login-template').html();
+  loginTemplate = Handlebars.compile(loginTemplate);
+  var loginHTML = loginTemplate({});
+
+  $('#content').html(loginHTML);
+
+});

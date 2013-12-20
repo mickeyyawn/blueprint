@@ -1,0 +1,47 @@
+{
+  "name": "kidscal",
+  "description": "site for managing kids programming across international regions",
+  "version": "1.0.0",
+  "author": "Mickey Yawn",
+  "contributors": [
+    {
+      "name": "Mickey Yawn",
+      "email": "mickey.yawn@turner.com"
+    },
+    {
+      "name": "Angie Smith",
+      "email": "angela.smith@turner.com"
+    }
+
+  ],
+  "dependencies": {
+    "hapi": "*",
+    "async": "*",
+    "mongodb": "*",
+    "nodemailer": "*",
+    "handlebars": "*",
+    "formidable": "*",
+    "underscore": "*",
+    "moment": "*",
+    "request": "*",
+    "uglify-js":"*",
+    "jshint":"*",
+    "lout": "0.4.x"
+  },
+  "devDependencies": {
+    "mocha" : "*",
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.3",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-ssh": "*",
+    "grunt-git": "~0.1.5",
+    "grunt-contrib-compress": "~0.5.2"
+  },
+  "engines": {
+    "node": ">= 0.1.0 <= 1.0.0"
+  },
+  "scripts": {
+    "start": "server.js"
+  }
+}
