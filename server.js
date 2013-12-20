@@ -7,7 +7,7 @@ var routes = require('./api/routes');
 
 var serverConfig = {
   ip : '0.0.0.0',
-  port : 4020
+  port : 4030
 };
 
 

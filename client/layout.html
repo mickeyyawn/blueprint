@@ -4,9 +4,9 @@
   <head>
     <meta charset="utf-8">
 
-    <title>KidsCal</title>
-    <meta name="description" content="Site to manage kids programming across regions">
-    <meta name="author" content="AppFoundry - Turner Broadcasting System, Inc.">
+    <title>Blueprint</title>
+    <meta name="description" content="Site to prototype node.js and client js">
+    <meta name="author" content="Mickey Yawn">
 
     <link rel="stylesheet" href="/styles.css?v=1.0">
 
@@ -15,6 +15,7 @@
     <script src='/jquery_2_0_3.js'></script>   
     <script src='/handlebars-v1.1.2.js'></script>  
     <script src='/lo-dash-2-4-1.js'></script>  
+    <script src='/postal.min.js'></script>  
        
 
     <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
@@ -22,17 +23,42 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
     
-    <script id="login-template" type="text/x-handlebars-template">
+    <script id="tasks-template" type="text/x-handlebars-template">
 
-      <br>
-      <br>
-      <br>
-      <div class='large-label'>wow, there will be some really cool login stuff here</div>
-      <br>
-      <br>
-      <br>
+      <div id='bp-taskview'>
+
+        <br>
+        <br>
+        <br>
+        <div class='large-label'>There will be some tasks here!</div>
+        <br>
+        <br>
+        <br>
+
+        {{#each tasks}}
+
+          {{> task}}
+
+        {{/each}}
+
+      </div>
+
 
     </script>
+
+ 
+    <script id="task-partial" type="text/x-handlebars-template">
+
+      <div class='task-text'>
+        {{name}}
+        {{dueDate}}
+        {{id}}
+      </div>
+      
+    </script>
+
+
+
 
     <script src="***JS***"></script>
 
@@ -40,7 +66,7 @@
 
   <body>
 
-    <div id='content'>
+    <div id='content' class='container'>
     </div>
     
   </body>

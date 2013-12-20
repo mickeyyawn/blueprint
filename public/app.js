@@ -1,55 +1,170 @@
-var Event = (function () {
-    // private static
-    var nextId = 1;
+var utils = {
 
-    // constructor
-    var cls = function () {
-        // private
-        var id = nextId++;
-        var name = 'Unknown';
+  s4: function() {
+    return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+  },
 
-        // public (this instance only)
-        this.get_id = function () { return id; };
+  guid: function() {
+    return utils.s4() + utils.s4() + '-' + utils.s4() + '-' + utils.s4() + '-' +
+      utils.s4() + '-' + utils.s4() + utils.s4() + utils.s4();
+  }
 
-        this.get_name = function () { return name; };
-        this.set_name = function (value) {
-                if (typeof value != 'string')
-                        throw 'Name must be a string';
-                if (value.length < 2 || value.length > 20)
-                        throw 'Name must be 2-20 characters long.';
-                name = value;
-        };
+};var ObjectTemplate = (function () {
+    
+  var instanceCount = 0;  // private static
+  var id;  // unique id for this instance
+
+  var cls = function (name) {
+    
+    instanceCount++;
+    var _name = (name === undefined) ? 'Unknown' : name;  //private
+    id = utils.guid();
+
+    this.getId = function () {
+
+      return id;
+
     };
 
-    // public static
-    cls.get_nextId = function () {
-        return nextId;
+    this.getName = function () {
+
+      return _name;
+
     };
 
-    // public (shared across instances)
-    cls.prototype = {
-        announce: function () {
-                alert('Hi there from Event!');
-        }
-    };
+    this.setName = function (value) {
 
-    return cls;
+      _name = value;
+
+    };
+  };
+
+  // public static
+  cls.instanceCount = function () {
+    return instanceCount;
+  };
+
+  // public (shared across instances)
+  cls.prototype.announce = function () {
+    console.log('Hello!  My id: ' + id);
+  };
+
+  return cls;
 
 })();
+/*
+var Task = (function(){
+  this.id = 0;
+  this.name ='';
+  this.dueDate = {};
+  
+  return {
+    id: 0,
+    name:'',
+    dueDate: {}
+  }; 
+})();
+*/
+
+
+var Task = function(){
+  this.id = 0;
+  this.name ='';
+  this.dueDate = {};
+  /*
+  return {
+    id: 0,
+    name:'',
+    dueDate: {}
+  }; */
+};
+
+
+var TaskView = (function () {
+
+  var cls = function (name) {
+
+  };
+
+
+  
+  cls.prototype.render = function () {
+
+    var tasksTemplate = $('#tasks-template').html();
+    tasksTemplate = Handlebars.compile(tasksTemplate);
+    Handlebars.registerPartial("task", $("#task-partial").html());
+    var tasksHTML = tasksTemplate(blueprint);
+
+    $('#content').append(tasksHTML);
+
+  };
+
+  cls.prototype.hide = function () {
+
+    $('#bp-taskview').hide();
+
+  };
+
+  cls.prototype.show = function () {
+
+  };
+
+
+  return cls;
+
+})();
+var blueprint = {
+  tasks:[],
+  taskView:{}
+};
+
+
 $(document).ready(function() {
 
-  alert('jquery is ready...');
 
-  var evt = new Event();
+  var obj1 = new ObjectTemplate();
 
-  console.log(evt);
+  obj1.announce();
+  console.log('obj1 id: ' + obj1.getId());
+  console.log('obj1 name: ' + obj1.getName());
+  console.log('how many instances: ' + ObjectTemplate.instanceCount());
 
-  evt.announce();
+  var obj2 = new ObjectTemplate('custom name');
 
-  var loginTemplate = $('#login-template').html();
-  loginTemplate = Handlebars.compile(loginTemplate);
-  var loginHTML = loginTemplate({});
+  obj2.announce();
+  console.log('obj2 id: ' + obj2.getId());
+  console.log('obj2 name: ' + obj2.getName());
 
-  $('#content').html(loginHTML);
+  obj2.setName('this is my new name...');
+  console.log('obj2 name: ' + obj2.getName());
+  console.log('how many instances: ' + ObjectTemplate.instanceCount());
+
+
+  var task1 = {
+    id:utils.guid(),
+    name:'task1',
+    dueDate:moment()
+  };
+
+  var task2 = {
+    id:utils.guid(),
+    name:'task2, this is my cool task!',
+    dueDate:moment()
+  };
+
+  for(var i=0;i<20;i++){
+    var t = new Task();
+    t.id = i;
+    t.name = 'this is my name : ' + i;
+    blueprint.tasks.push(t);
+  }
+
+  //blueprint.tasks.push(task1);
+  //blueprint.tasks.push(task2);
+
+  console.log(blueprint);
+
+  blueprint.taskView = new TaskView();
+  blueprint.taskView.render();
 
 });
