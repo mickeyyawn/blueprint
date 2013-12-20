@@ -1,18 +1,13 @@
 {
-  "name": "kidscal",
-  "description": "site for managing kids programming across international regions",
+  "name": "blueprint",
+  "description": "hacking site, template for node and client js",
   "version": "1.0.0",
   "author": "Mickey Yawn",
   "contributors": [
     {
       "name": "Mickey Yawn",
       "email": "mickey.yawn@turner.com"
-    },
-    {
-      "name": "Angie Smith",
-      "email": "angela.smith@turner.com"
     }
-
   ],
   "dependencies": {
     "hapi": "*",
