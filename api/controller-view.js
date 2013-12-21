@@ -9,7 +9,7 @@ var pathToLayout =  global.rootDir + '/client/layout.html';
 var JSfiles = ['./client/js/blueprint.utils.js',
                './client/js/blueprint.model.template.js',
                './client/js/blueprint.model.task.js',
-               './client/js/blueprint.view.tasks.js',
+               './client/js/blueprint.controller.tasks.js',
                './client/js/blueprint.main.js'];
 
 //

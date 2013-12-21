@@ -23,6 +23,39 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 
     
+
+    <script id="task-edit-template" type="text/x-handlebars-template">
+
+      <br>
+      <br>
+      <br>
+
+      <div id='bp-edit-task' class='task-edit-container'>
+
+        <br>
+        <br>
+        <br>
+        <div class='large-label'>Edit task</div>
+        <br>
+        <br>
+        <div>edit a task ui here!</div>
+        <br>
+
+        <div class='button' id='add-new-task-button'>SAVE</div>
+        <div class='button' id='add-new-task-button'>CANCEL</div>
+
+        <br>
+        <br>
+
+
+      </div>
+
+
+    </script>
+
+
+
+
     <script id="tasks-template" type="text/x-handlebars-template">
 
       <div id='bp-taskview'>
@@ -30,14 +63,20 @@
         <br>
         <br>
         <br>
-        <div class='large-label'>There will be some tasks here!</div>
+        <div class='large-label'>Tasks</div>
         <br>
+        <br>
+        <br>
+
+        <div class='button' id='add-new-task-button'>ADD NEW TASK</div>
+
         <br>
         <br>
 
         {{#each tasks}}
 
           {{> task}}
+          <div style='clear:both'></div>
 
         {{/each}}
 
@@ -49,12 +88,14 @@
  
     <script id="task-partial" type="text/x-handlebars-template">
 
-      <div class='task-text'>
-        {{name}}
-        {{dueDate}}
-        {{id}}
+      <div class='task-container' id='{{id}}'>
+        
+        <div class='task-text' style='float:left'>{{dueDateAsString task}}</div>
+        <div style='margin-left:40px;float:left'>&nbsp</div>
+        <div class='task-text' style='float:left'>{{name}}</div>
+        
       </div>
-      
+
     </script>
 
 

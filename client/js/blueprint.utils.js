@@ -7,6 +7,10 @@ var utils = {
   guid: function() {
     return utils.s4() + utils.s4() + '-' + utils.s4() + '-' + utils.s4() + '-' +
       utils.s4() + '-' + utils.s4() + utils.s4() + utils.s4();
+  },
+
+  isSomething: function(obj){
+    return ((obj !== undefined) && (obj !== {}) && (obj !== '') && (obj !== null));
   }
 
 };
